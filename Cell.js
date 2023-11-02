@@ -13,5 +13,10 @@ export default class Cell {
     return this.#tile;
   }
 
-  set tile(newTile) {}
+  set tile(newTile) {
+    this.#tile = newTile;
+    if (newTile == null) return;
+    this.#tile.x = this.#x;
+    this.#tile.y = this.#y;
+  }
 }
