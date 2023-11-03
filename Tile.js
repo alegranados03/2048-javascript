@@ -10,6 +10,10 @@ export default class Tile {
     this.value = value;
   }
 
+  remove() {
+    this.#tileElement.remove();
+  }
+
   set x(value) {
     this.#x = value;
     this.#tileElement.style.setProperty("--x", this.#x);
@@ -18,6 +22,10 @@ export default class Tile {
   set y(value) {
     this.#y = value;
     this.#tileElement.style.setProperty("--y", this.#y);
+  }
+
+  get value() {
+    return this.#value;
   }
 
   set value(val) {

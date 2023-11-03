@@ -22,6 +22,10 @@ export default class Grid {
     return this.cellObjects.filter((cell) => cell.tile == null);
   }
 
+  get cells() {
+    return this.cellObjects;
+  }
+
   randomEmptyCell() {
     const randomIndex = Math.floor(Math.random() * this.#emptyCells.length);
     return this.#emptyCells[randomIndex];
@@ -40,5 +44,21 @@ export default class Grid {
       (cell, index) =>
         new Cell(cell, index % GRID_SIZE, Math.floor(index / GRID_SIZE))
     );
+  }
+
+  get gridCellsByColumns() {
+    return this.cellObjects.reduce((cellGrid, cell) => {
+      cellGrid[cell.x] = cellGrid[cell.x] || [];
+      cellGrid[cell.x][cell.y] = cell;
+      return cellGrid;
+    }, []);
+  }
+
+  get gridCellsByRows() {
+    return this.cellObjects.reduce((cellGrid, cell) => {
+      cellGrid[cell.y] = cellGrid[cell.y] || [];
+      cellGrid[cell.y][cell.x] = cell;
+      return cellGrid;
+    }, []);
   }
 }
