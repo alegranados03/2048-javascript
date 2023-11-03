@@ -43,4 +43,12 @@ export default class Tile {
       `${backgroundLightness <= 50 ? 90 : 10}%`
     );
   }
+
+  waitForTransition() {
+    return new Promise((resolve) => {
+      this.#tileElement.addEventListener("transitionend", resolve, {
+        once: true,
+      });
+    });
+  }
 }
